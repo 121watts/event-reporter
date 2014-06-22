@@ -9,7 +9,7 @@ class QueueTest < Minitest::Test
       {first_name: "Andrew", last_name: "Watkins", state: "CO", zipcode: "80223"},
       {first_name: "Charles", last_name: "Watkins", state: "NY", zipcode: "12412"},
       {first_name: "Horacio", last_name: "Chavez", state: "CA", zipcode: "90210"},
-    ]
+    ].map {|row| Entry.new(row)}
   end
 
   def queue
@@ -21,13 +21,13 @@ class QueueTest < Minitest::Test
     assert_equal 2, entries.length
     andrew, charles = entries
 
-    assert_equal "Andrew Watkins", andrew.name
-    assert_equal "CO", andrew.state
-    assert_equal "80223", andrew.zipcode
+    assert_equal "Andrew Watkins", andrew.full_name_call
+    assert_equal "CO", andrew.state_call
+    assert_equal "80223", andrew.zipcode_call
 
-    assert_equal "Charles Watkins", charles.name
-    assert_equal "NY", charles.state
-    assert_equal "12412", charles.zipcode
+    assert_equal "Charles Watkins", charles.full_name_call
+    assert_equal "NY", charles.state_call
+    assert_equal "12412", charles.zipcode_call
   end
 
 end

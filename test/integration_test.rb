@@ -12,10 +12,10 @@ class IntegrationTest < Minitest::Test
     assert_equal 2, entries.length
     e1, e2 = entries
 
-    assert_equal "Allison Nguyen", e1.name
+    assert_equal "Allison Nguyen", e1.full_name_call
     assert_equal "20010", e1.zipcode
 
-    assert_equal "Marta Nguyen", e1.name
-    assert_equal "23220", e1.zipcode
+    assert_equal "Marta Nguyen", e2.full_name_call
+    assert_equal "23220", e2.zipcode
   end
 end

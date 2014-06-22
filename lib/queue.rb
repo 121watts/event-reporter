@@ -1,17 +1,24 @@
+require_relative 'entry'
+
 class Queue
 
-  attr_reader :rows
+  attr_reader :entries
 
   def self.in(directory)
-    new
+    file = File.join(directory, 'event_attendees_sample.csv')
+    data = CSV.open(file, headers: true, header_converters: :symbol)
+    rows = data.map do |row|
+      Entry.new(row)
+    end
+    new(rows)
   end
 
-  def initialize(rows)
-    @rows = rows
+  def initialize(entries)
+    @entries = entries
   end
 
   def find_by_last_name(name)
-    rows.select {|person| person[:last_name] == name}
+    entries.select {|entry| entry.last_name == name}
   end
 
 end

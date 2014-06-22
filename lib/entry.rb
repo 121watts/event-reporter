@@ -21,6 +21,7 @@ class Entry
     @city = data[:city]
     @state = data[:state]
     @zipcode = data[:zipcode]
+    @full_name = "#{first_name} #{last_name}"
   end
 
   def id_call
@@ -29,6 +30,10 @@ class Entry
 
   def regdate_call
     "#{regdate}"
+  end
+
+  def full_name_call
+    "#{first_name} #{last_name}"
   end
 
   def first_name_call
