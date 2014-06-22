@@ -7,12 +7,12 @@ require_relative '../lib/event_reporter'
 class EventReporterTest < Minitest::Test
   def queue
     @queue ||= Minitest::Mock.new
-    end
+  end
 
   def test_lookup_by_last_name
-    event_reporter = EventReporter.new
-    queue.expect(find_by_last_name, [], ["Nguyen"])
-    phone_book.lookup('Nguyen')
+    event_reporter = EventReporter.new(queue)
+    queue.expect(:find_by_last_name, [], ["Nguyen"])
+    event_reporter.lookup('Nguyen')
     queue.verify
   end
 

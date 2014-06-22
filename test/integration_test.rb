@@ -6,8 +6,8 @@ require_relative '../lib/event_reporter.rb'
 
 class IntegrationTest < Minitest::Test
   def test_lookup_by_last_name
-    event_report = EventReport.new
-    entries = event_report.lookup('Nguyen').sort_by {|e| e.last_name}
+    event_reporter = EventReporter.new
+    entries = event_reporter.lookup('Nguyen').sort_by {|e| e.last_name}
 
     assert_equal 2, entries.length
     e1, e2 = entries
