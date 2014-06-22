@@ -2,7 +2,7 @@ gem     'minitest', '~>5.2'
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'csv'
-require_relative '../lib/event_eventreporter.rb'
+require_relative '../lib/event_reporter.rb'
 
 class IntegrationTest < Minitest::Test
   def test_lookup_by_last_name
