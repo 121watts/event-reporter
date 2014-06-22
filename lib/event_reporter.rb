@@ -8,8 +8,24 @@ class EventReporter
     @queue = queue
   end
 
-  def lookup(name)
+  def lookup_last(name)
     queue.find_by_last_name(name)
   end
+
+  def lookup_first(name)
+    queue.find_by_first_name(name)
+  end
+
+  # def lookup_city(city)
+  #
+  # end
+  #
+  # def lookup_state(state)
+  #
+  # end
+  #
+  # def lookup_zipcode(zipcode)
+  #
+  # end
 
 end

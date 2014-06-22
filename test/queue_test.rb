@@ -30,4 +30,15 @@ class QueueTest < Minitest::Test
     assert_equal "12412", charles.zipcode_call
   end
 
+  def test_find_by_first_name
+    entries = queue.find_by_first_name("Andrew").sort_by {|e| e.first_name}
+    assert_equal 1, entries.length
+    andrew = entries
+
+    assert_equal "Andrew", andrew.first_name_call
+    assert_equal "CO", andrew.state_call
+    assert_equal "80223", andrew.zipcode_call
+  end
+
+
 end

@@ -17,8 +17,12 @@ class Queue
     @entries = entries
   end
 
-  def find_by_last_name(name)
-    entries.select {|entry| entry.last_name == name}
+  def find_by_last_name(last)
+    entries.select {|entry| entry.last_name == last}
+  end
+
+  def find_by_first_name(first)
+    entries.select{|entry| entry.first_name == first}
   end
 
 end
