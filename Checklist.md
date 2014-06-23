@@ -29,7 +29,7 @@ Checklist: event-reporter
 [  ] `load` <br />
 [  ] `find city Salt Lake City` <br />
 [  ] `queue print` should display 13 attendees <br />
-[  ] queue save to city_sample.csv <br /> 
+[  ] `queue save to city_sample.csv` <br /> 
 [  ] Open the CSV and inspect that it has correct headers and the data rows from step 3.<br /> 
 [  ] `find state DC`<br /> 
 [  ] `queue print by last_name` should print them alphabetically by last name<br /> 
