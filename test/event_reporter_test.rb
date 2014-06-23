@@ -23,4 +23,24 @@ class EventReporterTest < Minitest::Test
     queue.verify
   end
 
+  def test_lookup_by_city
+    event_reporter = EventReporter.new(queue)
+    queue.expect(:find_by_city, [], ["Detroit"])
+    event_reporter.lookup_city('Detroit')
+    queue.verify
+  end
+
+  def test_lookup_by_state
+    event_reporter = EventReporter.new(queue)
+    queue.expect(:find_by_state, [], ["CO"])
+    event_reporter.lookup_state('CO')
+    queue.verify
+  end
+
+  def test_lookup_by_zipcode
+    event_reporter = EventReporter.new(queue)
+    queue.expect(:find_by_zipcode, [], ["90210"])
+    event_reporter.lookup_zipcode('90210')
+    queue.verify
+  end
 end

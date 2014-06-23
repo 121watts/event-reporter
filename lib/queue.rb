@@ -25,4 +25,16 @@ class Queue
     entries.select{|entry| entry.first_name == first}
   end
 
+  def find_by_city(city)
+    entries.select{|entry| entry.city == city}
+  end
+
+  def find_by_zipcode(zipcode)
+    entries.select{|entry| entry.zipcode == zipcode}
+  end
+
+  def find_by_state(state)
+    entries.select{|entry| entry.state == state}
+  end
+
 end
