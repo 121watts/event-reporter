@@ -45,7 +45,6 @@ event-reporter
 * queue save to state_sample.csv
 * quit
 * Restart the program and continue…
-
 * load state_sample.csv
 * find first_name John
 * queue count should return 4
@@ -54,7 +53,6 @@ event-reporter
 #### E. Emptiness
 
 * Note that this set intentionally has no call to load:
-
 * find last_name Johnson
 * queue count should return 0
 * queue print should not print any attendee data
