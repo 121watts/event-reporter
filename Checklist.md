@@ -54,7 +54,7 @@ _Restart the program and continue…_<br />
 
 #### E. Emptiness
 
-[  ] Note that this set intentionally has no call to `load`:<br /><br />
+Note that this set intentionally has no call to `load`:<br /><br />
 [  ] `find last_name Johnson`<br />
 [  ] `queue count` should return `0`<br />
 [  ] `queue print` should not print any attendee data<br />
