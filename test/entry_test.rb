@@ -19,15 +19,15 @@ class EntryTest < Minitest::Test
     }
     entry = Entry.new(data)
 
-    assert_equal '1', entry.id_call
-    assert_equal '11/12/08 10:47', entry.regdate_call
-    assert_equal 'Alice', entry.first_name_call
-    assert_equal 'Smith', entry.last_name_call
-    assert_equal 'alice@jumpstartlab.com', entry.email_address_call
-    assert_equal '111.111.1111', entry.homephone_call
-    assert_equal '1600 Glenarm Place', entry.street_call
-    assert_equal 'Denver', entry.city_call
-    assert_equal 'CO', entry.state_call
-    assert_equal '80202', entry.zipcode_call
+    assert_equal '1', entry.id
+    assert_equal '11/12/08 10:47', entry.regdate
+    assert_equal 'Alice', entry.first_name
+    assert_equal 'Smith', entry.last_name
+    assert_equal 'alice@jumpstartlab.com', entry.email_address
+    assert_equal '111.111.1111', entry.homephone
+    assert_equal '1600 Glenarm Place', entry.street
+    assert_equal 'Denver', entry.city
+    assert_equal 'CO', entry.state
+    assert_equal '80202', entry.zipcode
   end
 end

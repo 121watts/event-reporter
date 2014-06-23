@@ -1,11 +1,13 @@
 require_relative 'queue'
+require_relative 'db'
 
 class EventReporter
 
-  attr_reader :queue
+  attr_reader :queue, :db
 
-  def initialize(queue=Queue.in('./data'))
+  def initialize(queue = Queue.new('../data'))
     @queue = queue
+    @db    = db
   end
 
   def lookup_last(name)
