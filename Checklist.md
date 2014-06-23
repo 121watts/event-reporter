@@ -1,4 +1,4 @@
-event-reporter
+Checklist: event-reporter
 ==============
 
 #### A. Happy Path
