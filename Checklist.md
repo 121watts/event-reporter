@@ -4,7 +4,7 @@ Checklist: event-reporter
 #### A. Happy Path
 
 [  ] `load event_attendees.csv`<br />
-[  ] `queue count` should return `0`<br />
+[__] `queue count` should return `0`<br />
 [  ] `find first_name John`<br />
 [  ] `queue count` should return `63`<br />
 [  ] `queue clear`<br />
