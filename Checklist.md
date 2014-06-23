@@ -43,7 +43,7 @@ Checklist: event-reporter
 [  ] `load`<br /> 
 [  ] `find state MD`<br /> 
 [  ] `queue save to state_sample.csv`<br /> 
-[  ] `quit`<br /> <br /> <br /> 
+[  ] `quit`<br /> 
 
 _Restart the program and continue…_<br /> 
 
