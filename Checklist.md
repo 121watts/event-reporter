@@ -3,15 +3,15 @@ Checklist: event-reporter
 
 #### A. Happy Path
 
-* `load event_attendees.csv`
-* `queue count` sho <br /> uld return `0`
-* `find first_name John`
-* `queue count` should return `63`
-* `queue clear`
-* `queue count` should return `0`
-* `help` should list the commands
-* `help queue count` should explain the queue count function
-* `help queue print` should explain the printing function
+ `load event_attendees.csv`<br />
+ `queue count` should return `0`<br />
+ `find first_name John`<br />
+ `queue count` should return `63`<br />
+ `queue clear`<br />
+ `queue count` should return `0`<br />
+ `help` should list the commands<br />
+ `help queue count` should explain the queue count function<br />
+ `help queue print` should explain the printing function<br />
 
 
 #### B. Let’s Try Printing
