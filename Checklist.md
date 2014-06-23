@@ -4,7 +4,7 @@ Checklist: event-reporter
 #### A. Happy Path
 
 [  ] `load event_attendees.csv`<br />
-[__] `queue count` should return `0`<br />
+[  ] `queue count` should return `0`<br />
 [  ] `find first_name John`<br />
 [  ] `queue count` should return `63`<br />
 [  ] `queue clear`<br />
@@ -16,40 +16,40 @@ Checklist: event-reporter
 
 #### B. Let’s Try Printing
 
-* `load`
-* `queue count` should return `0`
-* `find first_name John`
-* `find first_name Mary`
-* `queue print` should print out the 16 attendees
-* `queue print by last_name` should print the same attendees sorted alphabetically by last name
-* `queue count` should return `16`
+[  ] `load`<br />
+[  ] `queue count` should return `0`<br />
+[  ] `find first_name John`<br />
+[  ] `find first_name Mary`<br />
+[  ] `queue print` should print out the 16 attendees<br />
+[  ] `queue print by last_name` should print the same attendees sorted alphabetically by last name<br />
+[  ] `queue count` should return `16`<br />
 
 #### C. Saving
 
-* `load`
-* `find city Salt Lake City`
-* `queue print` should display 13 attendees
-* queue save to city_sample.csv
-* Open the CSV and inspect that it has correct headers and the data rows from step 3.
-* `find state DC`
-* `queue print by last_name` should print them alphabetically by last name
-* `queue save to state_sample.csv`
-* Open the CSV and inspect that it has the headers, the data from step 7, but not the data previously found in step 2.
+[  ] `load` <br />
+[  ] `find city Salt Lake City` <br />
+[  ] `queue print` should display 13 attendees <br />
+[  ] queue save to city_sample.csv <br /> 
+[  ] Open the CSV and inspect that it has correct headers and the data rows from step 3.<br /> 
+[  ] `find state DC`<br /> 
+[  ] `queue print by last_name` should print them alphabetically by last name<br /> 
+[  ] `queue save to state_sample.csv`<br /> 
+[  ] Open the CSV and inspect that it has the headers, the data from step 7, but not the data previously found in step 2.<br /> 
 
 
 
 #### D. Reading Your Data
 
-* `load`
-* `find state MD`
-* `queue save to state_sample.csv`
-* `quit`
-* 
-_Restart the program and continue…_
+[  ] `load`<br /> 
+[  ] `find state MD`<br /> 
+[  ] `queue save to state_sample.csv`<br /> 
+[  ] `quit`<br /> <br /> <br /> 
 
-* `load state_sample.csv`
-* `find first_name John`
-* `queue count` should return `4`
+_Restart the program and continue…_<br /> 
+
+[  ] `load state_sample.csv`<br /> 
+[  ] `find first_name John`<br /> 
+[  ] `queue count` should return `4`<br /> 
 
 
 #### E. Emptiness
