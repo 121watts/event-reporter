@@ -54,11 +54,11 @@ _Restart the program and continue…_<br />
 
 #### E. Emptiness
 
-* Note that this set intentionally has no call to load:
-* find last_name Johnson
-* queue count should return 0
-* queue print should not print any attendee data
-* queue clear should not return an error
-* queue print by last_name should not print any data
-* queue save to empty.csv should output a file with only headers
-* queue count should return 0
+[  ] Note that this set intentionally has no call to `load`:<br /><br />
+[  ] `find last_name Johnson`<br />
+[  ] `queue count` should return `0`<br />
+[  ] `queue print` should not print any attendee data<br />
+[  ] `queue clear` should not return an error<br />
+[  ] `queue print by last_name` should not print any data<br />
+[  ] `queue save to empty.csv` should output a file with only headers<br />
+[  ] `queue count` should return 0<br />
