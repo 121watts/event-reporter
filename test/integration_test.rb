@@ -1,14 +1,11 @@
-gem     'minitest', '~>5.2'
-require 'minitest/autorun'
-require 'minitest/pride'
-require 'csv'
-require_relative '../lib/event_reporter.rb'
-
+require_relative 'test_helper'
 
 class IntegrationTest < Minitest::Test
   def test_lookup_by_last_name
     event_reporter = EventReporter.new
-    entries = event_reporter.lookup_last('Nguyen').sort_by {|e| e.last_name}
+    entries = event_reporter.lookup_last('Nguyen').sort_by {|e|
+      e.first_name
+    }
 
     assert_equal 2, entries.length
     e1, e2 = entries
@@ -33,7 +30,7 @@ class IntegrationTest < Minitest::Test
     assert_equal "Warner", e1.last_name
     assert_equal "Lyndeborough", e1.city
     assert_equal "NH", e1.state
-    assert_equal "3082", e1.zipcode
+    assert_equal "03082", e1.zipcode
 
     assert_equal "Shannon", e2.first_name
     assert_equal "Davis", e2.last_name
@@ -90,13 +87,13 @@ def test_lookup_by_zipcode
     assert_equal "Burns", e1.last_name
     assert_equal "Adjuntas", e1.city
     assert_equal "PR", e1.state
-    assert_equal "601", e1.zipcode
+    assert_equal "00601", e1.zipcode
 
     assert_equal "Laura", e2.first_name
     assert_equal "Rapetsky", e2.last_name
     assert_equal "San Juan", e2.city
     assert_equal "PR", e2.state
-    assert_equal "924", e2.zipcode
+    assert_equal "00924", e2.zipcode
   end
 
 

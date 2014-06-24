@@ -1,7 +1,9 @@
 class Cleaner
 
-##how is this data getting passed to Cleaner?
-##hash, array, array of hashes?
+##Cleaner will get passed an array of Entry objects
+##So, how do I pass the symbols into the cleaner
+##and then put them into the queue
+##then, once they are in the queue how do i print them?
 
   def clean_first_name(first_name)
       first_name.strip.capitalize
@@ -12,7 +14,7 @@ class Cleaner
   end
 
   def clean_phone(homephone)
-    phone = homephone.scan(/\d/).join
+    homephone.scan(/\d/).join
   end
 
   def clean_city(city)

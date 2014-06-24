@@ -1,19 +1,20 @@
 require 'csv'
+require_relative 'entry'
 
 class DB
   def self.read(filename)
-    new(CSV.open(filename, headers: true, header_converters: :symbol).to_a)
+    new(CSV.open(filename, headers: true, header_converters: :symbol))
   end
 
   attr_reader :records
 
-  def initialize(records)
-    @records   = records
+  def initialize(csv_records)
+    @records = build_attendees(csv_records)
   end
 
-  def build_attendees
-    @data.each do |row|
-      @records << Entry.new(row)
+  def build_attendees(data)
+    data.collect do |row|
+      Entry.new(row)
     end
   end
 
@@ -37,7 +38,4 @@ class DB
     records.select { |entry| entry.state == state }
   end
 
-  def find_by(attribute, value)
-    records.select { |attendee| attendee[attribute] == value }
-  end
 end

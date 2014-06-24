@@ -5,8 +5,8 @@ class EventReporter
 
   attr_reader :queue, :db
 
-  def initialize(queue = Queue.new('../data'))
-    @queue = queue
+  def initialize()
+    @queue = Queue.new
     @db    = db
   end
 
