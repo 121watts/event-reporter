@@ -6,20 +6,20 @@ require 'pry'
 
 class QueueTest < Minitest::Test
 
-  def rows
+  def attendee_data
     [
       {first_name: "Andrew", last_name: "Watkins", city: "Denver", state: "CO", zipcode: "80223"},
       {first_name: "Charles", last_name: "Watkins", city: "New York", state: "NY", zipcode: "12412"},
       {first_name: "Horacio", last_name: "Chavez", city: "Denver", state: "CA", zipcode: "90210"},
-    ].map {|row| Entry.new(row)}
+    ]
   end
 
-  def queue
-    @queue ||= DB.new(rows)
+  def attendee
+    DB.new(attendee_data)
   end
-
+binding.pry 
   def test_find_by_last_name
-    entries = queue.find_by_last_name("Watkins").sort_by {|e| e.last_name}
+    entries = attendee.find_by_last_name("Watkins").sort_by {|e| e.last_name}
     assert_equal 2, entries.length
     andrew, charles = entries
 
@@ -33,7 +33,7 @@ class QueueTest < Minitest::Test
   end
 
   def test_find_by_first_name
-    entries = queue.find_by_first_name("Andrew").sort_by {|e| e.first_name}
+    entries = attendee.find_by_first_name("Andrew").sort_by {|e| e.first_name}
     assert_equal 1, entries.length
     andrew, charles = entries
 
@@ -43,7 +43,7 @@ class QueueTest < Minitest::Test
   end
 
   def test_find_by_city
-    entries = queue.find_by_city("Denver").sort_by {|e| e.city}
+    entries = attendee.find_by_city("Denver").sort_by {|e| e.city}
     assert_equal 2, entries.length
     andrew, horacio = entries
 

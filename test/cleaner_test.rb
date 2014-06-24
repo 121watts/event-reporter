@@ -2,10 +2,17 @@ gem 'minitest', '~>5.2'
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/cleaner'
-#require_relative '../data/event_attendees_sample.csv'
+require 'pry'
+
 
 class CleanerTest < Minitest::Test
-  def test_first_name_has_right_format
-    person = Cleaner.new(name)
+
+  def test_it_parses_zip_code
+    queue = File.read('./test/fixtures/small_sample.txt')
+  binding.pry
+
+    queue.to_a
+    assert queue.clean_zipcode.include?('00703')
   end
+
 end

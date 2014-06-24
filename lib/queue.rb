@@ -1,38 +1,38 @@
 require_relative 'entry'
 require_relative 'db'
-
+require 'pry'
 
 
 class Queue
-  attr_reader :entries, :db
+  attr_reader :attendees, :db
 
   def initialize(db)
-    @entries   = []
-    @db        = DB.new('../data/event_attendees_sample.csv')
+    @attendees   = []
+    @db          = DB.new('./event_attendees_sample.csv')
   end
 
   def find_by_last_name(last)
-    entries << db.select { |entry| entry.last_name == last }
+    attendees << db.select { |entry| entry.last_name == last }
   end
-
+binding.pry
   def find_by_first_name(first)
-    entries << db.select{ |entry| entry.first_name == first }
+    attendees << db.select{ |entry| entry.first_name == first }
   end
 
   def find_by_city(city)
-    entries << db.select{ |entry| entry.city == city }
+    attendees << db.select{ |entry| entry.city == city }
   end
 
   def find_by_zipcode(zipcode)
-    entries << db.select{ |entry| entry.zipcode == zipcode }
+    attendees << db.select{ |entry| entry.zipcode == zipcode }
   end
 
   def find_by_state(state)
-    entries << db.select{ |entry| entry.state == state }
+    attendees << db.select{ |entry| entry.state == state }
   end
 
   def clear
-    @entries = []
+    @attendees = []
   end
 
 end

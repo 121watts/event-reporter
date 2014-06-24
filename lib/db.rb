@@ -38,7 +38,7 @@ class DB
     records.select { |entry| entry.state == state }
   end
 
-  # def find_by(attribute, value)
-  #   data.select { |attendee| attendee[attribute] == value }
-  # end
+  def find_by(attribute, value)
+    data.select { |attendee| attendee[attribute] == value }
+  end
 end
