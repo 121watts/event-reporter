@@ -1,6 +1,5 @@
 require_relative 'entry'
 require_relative 'db'
-require 'pry'
 
 
 class Queue
@@ -12,23 +11,23 @@ class Queue
   end
 
   def find_by_last_name(last)
-    attendees << db.select { |entry| entry.last_name == last }
+    attendees << db.find_by_last_name(last)
   end
-binding.pry
+
   def find_by_first_name(first)
-    attendees << db.select{ |entry| entry.first_name == first }
+    attendees << db.find_by_first_name(first)
   end
 
   def find_by_city(city)
-    attendees << db.select{ |entry| entry.city == city }
+    attendees << db.find_by_city(city)
   end
 
   def find_by_zipcode(zipcode)
-    attendees << db.select{ |entry| entry.zipcode == zipcode }
+    attendees << db.find_by_zipcode(zipcode)
   end
 
   def find_by_state(state)
-    attendees << db.select{ |entry| entry.state == state }
+    attendees << db.find_by_state(state)
   end
 
   def clear

@@ -2,7 +2,7 @@ gem 'minitest', '~>5.2'
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/queue'
-require 'pry'
+require_relative '../lib/db'
 
 class QueueTest < Minitest::Test
 
@@ -11,13 +11,13 @@ class QueueTest < Minitest::Test
       {first_name: "Andrew", last_name: "Watkins", city: "Denver", state: "CO", zipcode: "80223"},
       {first_name: "Charles", last_name: "Watkins", city: "New York", state: "NY", zipcode: "12412"},
       {first_name: "Horacio", last_name: "Chavez", city: "Denver", state: "CA", zipcode: "90210"},
-    ]
+    ].map {|row| Entry.new(row)}
   end
 
   def attendee
     DB.new(attendee_data)
   end
-binding.pry 
+
   def test_find_by_last_name
     entries = attendee.find_by_last_name("Watkins").sort_by {|e| e.last_name}
     assert_equal 2, entries.length
@@ -57,6 +57,5 @@ binding.pry
     assert_equal "CA", horacio.state
     assert_equal "90210", horacio.zipcode
   end
-
 
 end

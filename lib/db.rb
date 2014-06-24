@@ -5,11 +5,10 @@ class DB
     new(CSV.open(filename, headers: true, header_converters: :symbol).to_a)
   end
 
-  attr_reader :data, :records
+  attr_reader :records
 
-  def initialize(data)
-    @data      = data
-    @records   = []
+  def initialize(records)
+    @records   = records
   end
 
   def build_attendees
@@ -39,6 +38,6 @@ class DB
   end
 
   def find_by(attribute, value)
-    data.select { |attendee| attendee[attribute] == value }
+    records.select { |attendee| attendee[attribute] == value }
   end
 end
