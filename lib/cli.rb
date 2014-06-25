@@ -12,18 +12,18 @@ class CLI
               :parameters,
               :criteria,
               :database,
-              :first_name_sort
+              :sort
 
-  attr_accessor            :db
+  attr_accessor :db
 
   def initialize(database)
-    @queue      = []
-    @command    = ""
-    @parameters = ""
-    @criteria   = ""
-    @database   = database
-    @db         = DB.read("./data/event_attendees.csv")
-    @first_name_sort = first_name_sort
+    @queue           = []
+    @command         = ""
+    @parameters      = ""
+    @criteria        = ""
+    @database        = database
+    @db              = DB.read("./data/event_attendees.csv")
+    @sort            = []
   end
 
   def start
@@ -65,80 +65,77 @@ class CLI
   end
 
   def find(parts)
-    case
-      when parts[1] == "first"
-        @parameters =  parts[3..-1].join(" ")
-        @first_name_sort = db.find_by_first_name(@parameters)
-      when parts[1] == "last"
-        @parameters = parts[3..-1].join(" ")
-        last_name_sort = db.find_by_last_name(@parameters)
-        print_attendees(last_name_sort)
-      when parts[1] == "city"
-        @parameters = parts[2..-1].join(" ")
-        city_sort = db.find_by_city(@parameters)
-      when parts[1] == "state"
-        @parameters = parts[2..-1].join(" ")
-        db.find_by_state(@parameters)
-      when parts[1] == "zipcode"
-        @parameters = parts[2..-1].join(" ")
-        zip_sort = db.find_by_zipcode(@parameters)
-      end
+    case parts[1]
+    when "first"
+      @parameters =  parts[3..-1].join(" ")
+      @sort       = db.find_by_first_name(@parameters)
+    when "last"
+      @parameters = parts[3..-1].join(" ")
+      @sort       = db.find_by_last_name(@parameters)
+    when "city"
+      @parameters = parts[2..-1].join(" ")
+      @sort       = db.find_by_city(@parameters)
+    when "state"
+      @parameters = parts[2..-1].join(" ")
+      @sort       = db.find_by_state(@parameters)
+    when "zipcode"
+      @parameters = parts[2..-1].join(" ")
+      @sort       = zip_sort = db.find_by_zipcode(@parameters)
+    end
   end
 
   def help(parts)
     @command    = parts[0..-1]
-      case
-      when parts[3] == "by"
-        puts "The instructions of 'queue printing by'"
-      when parts[3] == "to"
-          puts "'queue save to' instructions"
-      when parts[2] == "clear"
-        puts "'Queue clear' instructions..."
-      when parts[2] == "print"
-          puts "'Queue print' instructions"
-      when parts[1] == nil
-        puts "The available commands are..."
-      when parts[1] == "queue"
-        puts "'Queue' instructions"
-      when parts[1] == "load"
-          puts "'Load' Instructions..."
-      when parts[1] == "find"
-        puts "'find' instructions..."
-      else
-        puts "Sorry, but '#{parts[1..-1].join(" ").upcase}' is not a valid command for Help Section."
-      end
+    case
+    when parts[3] == "by"
+      puts "The instructions of 'queue printing by'"
+    when parts[3] == "to"
+      puts "'queue save to' instructions"
+    when parts[2] == "clear"
+      puts "'Queue clear' instructions..."
+    when parts[2] == "print"
+      puts "'Queue print' instructions"
+    when parts[1] == nil
+      puts "The available commands are..."
+    when parts[1] == "queue"
+      puts "'Queue' instructions"
+    when parts[1] == "load"
+      puts "'Load' Instructions..."
+    when parts[1] == "find"
+      puts "'find' instructions..."
+    else
+      puts "Sorry, but '#{parts[1..-1].join(" ").upcase}' is not a valid command for Help Section."
+    end
   end
 
   def queue(parts)
     case
-      when parts[1]  == "count"
-        puts "QUEUE COUNT WORKING!"
-        @command    = parts[0..1]
-        @parameters = parts[2..-1]
-      when parts[1] == "clear"
-        puts "QUEUE CLEAR WORKING!"
-      when parts[1] == "print"
-        print_attendees(@first_name_sort)
-      when parts[2] == "by"
-        puts "QUEUE PRINT BY WORKING!"
-      when parts[2] == "to"
-        puts "QUEUE SAVE TO WORKING!"
-      else
-        puts "That's not a valid option for queue."
-      end
+    when parts[1]  == "count"
+      puts "There are #{@sort.count} entiries in the queue"
+      puts "\n"
+    when parts[1] == "clear"
+      @sort = []
+    when parts[1] == "print"
+      print_attendees(@sort)
+    when parts[2] == "by"
+      print_attendees(@sort)
+    when parts[2] == "to"
+      puts "QUEUE SAVE TO WORKING!"
+    else
+      puts "That's not a valid option for queue."
+    end
   end
 
-
   def print_attendees(sorted_info)
-    print "FIRST".ljust(11) + "LAST".ljust(15) + "EMAIL".ljust(31) +
-    "ZIP".ljust(10) + "CITY".ljust(15) + "STATE".ljust(8) + "STREET".ljust(20) +
-    "PHONE".ljust(20)
+    print "LAST".ljust(11) + "FIRST".ljust(15) +
+    "ZIP".ljust(10) + "CITY".ljust(15) + "STATE".ljust(8) + "STREET".ljust(40) +
+    "PHONE".ljust(13) + "EMAIL".ljust(1)
     print "\n"
       sorted_info.each do |key|
       print "#{key.last_name.ljust(10)} #{key.first_name.ljust(15)}" +
-      "#{key.email_address.ljust(30)} #{key.zipcode.ljust(10)}" +
-      "#{key.city.ljust(15)}" + "#{key.state.ljust(8)}" + "#{key.street.ljust(20)}" +
-      "#{key.homephone.ljust(1)}"
+      "#{key.zipcode.ljust(10)}" +
+      "#{key.city.ljust(15)}" + "#{key.state.ljust(8)}" + "#{key.street.ljust(40)}" +
+      "#{key.homephone.ljust(13)}" + "#{key.email_address.ljust(1)}"
       print "\n"
     end
   end
