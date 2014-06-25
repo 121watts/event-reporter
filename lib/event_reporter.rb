@@ -30,12 +30,3 @@ class EventReporter
   end
 
 end
-
-
-  # LAST NAME  FIRST NAME  EMAIL  ZIPCODE  CITY  STATE  ADDRESS  PHONE
-
-
-# contact_info.each do |key, value|
-#  .. print print key + ' = ' + value
-#  .. print "\n"
-#  .. end
