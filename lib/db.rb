@@ -19,7 +19,7 @@ class DB
   end
 
   def find_by_last_name(last)
-    records.select { |entry| entry.last_name == last }
+    records.select { |entry| entry.last_name == last }.sort_by {|e| e.first_name}
   end
 
   def find_by_first_name(first)
@@ -38,7 +38,7 @@ class DB
     records.select { |entry| entry.state == state }.sort_by {|e| e.last_name}
   end
 
-  # THIS WORKS BUT DOESNT BELONG IN HERE 
+  # THIS WORKS BUT DOESNT BELONG IN HERE
   # def print_attendees
   #   print "FIRST".ljust(11) + "LAST".ljust(15) + "EMAIL".ljust(31) +
   #   "ZIP".ljust(10) + "CITY".ljust(15) + "STATE".ljust(8) + "STREET".ljust(20) +
