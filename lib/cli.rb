@@ -68,14 +68,14 @@ class CLI
     case
       when parts[1] == "first"
         @parameters =  parts[3..-1].join(" ")
-        first_name_sort = db.find_by_first_name(@parameters)
-    end
+        @first_name_sort = db.find_by_first_name(@parameters)
       when parts[1] == "last"
         @parameters = parts[3..-1].join(" ")
         last_name_sort = db.find_by_last_name(@parameters)
+        print_attendees(last_name_sort)
       when parts[1] == "city"
         @parameters = parts[2..-1].join(" ")
-        db.find_by_city(@parameters)
+        city_sort = db.find_by_city(@parameters)
       when parts[1] == "state"
         @parameters = parts[2..-1].join(" ")
         db.find_by_state(@parameters)
@@ -118,7 +118,7 @@ class CLI
       when parts[1] == "clear"
         puts "QUEUE CLEAR WORKING!"
       when parts[1] == "print"
-        puts "QUEUE PRINT WORKING!"
+        print_attendees(@first_name_sort)
       when parts[2] == "by"
         puts "QUEUE PRINT BY WORKING!"
       when parts[2] == "to"
@@ -129,18 +129,18 @@ class CLI
   end
 
 
-  # def print_attendees
-  #   print "FIRST".ljust(11) + "LAST".ljust(15) + "EMAIL".ljust(31) +
-  #   "ZIP".ljust(10) + "CITY".ljust(15) + "STATE".ljust(8) + "STREET".ljust(20) +
-  #   "PHONE".ljust(20)
-  #   print "\n"
-  #     @records.each do |key|
-  #     print "#{key.last_name.ljust(10)} #{key.first_name.ljust(15)}" +
-  #     "#{key.email_address.ljust(30)} #{key.zipcode.ljust(10)}" +
-  #     "#{key.city.ljust(15)}" + "#{key.state.ljust(8)}" + "#{key.street.ljust(20)}" +
-  #     "#{key.homephone.ljust(1)}"
-  #     print "\n"
-  #   end
-  # end
+  def print_attendees(sorted_info)
+    print "FIRST".ljust(11) + "LAST".ljust(15) + "EMAIL".ljust(31) +
+    "ZIP".ljust(10) + "CITY".ljust(15) + "STATE".ljust(8) + "STREET".ljust(20) +
+    "PHONE".ljust(20)
+    print "\n"
+      sorted_info.each do |key|
+      print "#{key.last_name.ljust(10)} #{key.first_name.ljust(15)}" +
+      "#{key.email_address.ljust(30)} #{key.zipcode.ljust(10)}" +
+      "#{key.city.ljust(15)}" + "#{key.state.ljust(8)}" + "#{key.street.ljust(20)}" +
+      "#{key.homephone.ljust(1)}"
+      print "\n"
+    end
+  end
 
 end
