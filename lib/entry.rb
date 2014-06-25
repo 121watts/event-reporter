@@ -11,7 +11,7 @@ class Entry
               :zipcode
 
   def initialize(data)
-    cleaner       = Cleaner.new
+    cleaner        = Cleaner.new
     @id            = data[:id]
     @regdate       = data[:regdate]
     @first_name    = cleaner.clean_first_name(data[:first_name])

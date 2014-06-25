@@ -18,7 +18,7 @@ class Cleaner
   end
 
   def clean_city(city)
-    city.strip.capitalize
+    city.strip.split.map(&:capitalize)*' '
   end
 
   def clean_state(state)

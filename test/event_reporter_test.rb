@@ -13,6 +13,7 @@ class EventReporterTest < Minitest::Test
     queue.verify
   end
 
+
   # def test_lookup_by_first_name
   #   event_reporter = EventReporter.new()
   #   queue.expect(:find_by_first_name, [], ["Shannon"])
