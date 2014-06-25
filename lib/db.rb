@@ -2,8 +2,10 @@ require 'csv'
 require_relative 'entry'
 
 class DB
-  def self.read(filename)
+  def self.read(filename = 'data/event_attendees_sample.csv')
+
     new(CSV.open(filename, headers: true, header_converters: :symbol))
+
   end
 
   attr_reader :records
