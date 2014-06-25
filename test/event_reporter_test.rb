@@ -2,15 +2,15 @@ require_relative 'test_helper'
 
 
 class EventReporterTest < Minitest::Test
-  def queue
-    @queue ||= Minitest::Mock.new
+  def db
+    @db ||= Minitest::Mock.new
   end
 
   def test_lookup_by_last_name
     event_reporter = EventReporter.new()
-    queue.expect(:find_by_last_name, [], ["Nguyen"])
+    db.expect(:find_by_last_name, [], ["Nguyen"])
     event_reporter.lookup_last('Nguyen')
-    queue.verify
+    db.verify
   end
 
 

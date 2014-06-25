@@ -3,31 +3,39 @@ require_relative 'db'
 
 class EventReporter
 
-  attr_reader :queue, :db
+  attr_reader :db
 
-  def initialize()
-    @queue = Queue.new
-    @db    = db
+  def initialize
+    @db = db
   end
 
   def lookup_last(name)
-    queue.find_by_last_name(name)
+    db.find_by_last_name(name)
   end
 
   def lookup_first(name)
-    queue.find_by_first_name(name)
+    db.find_by_first_name(name)
   end
 
   def lookup_city(city)
-    queue.find_by_city(city)
+    db.find_by_city(city)
   end
 
   def lookup_state(state)
-    queue.find_by_state(state)
+    db.find_by_state(state)
   end
 
   def lookup_zipcode(zipcode)
-    queue.find_by_zipcode(zipcode)
+    db.find_by_zipcode(zipcode)
   end
 
 end
+
+
+  # LAST NAME  FIRST NAME  EMAIL  ZIPCODE  CITY  STATE  ADDRESS  PHONE
+
+
+# contact_info.each do |key, value|
+#  .. print print key + ' = ' + value
+#  .. print "\n"
+#  .. end
