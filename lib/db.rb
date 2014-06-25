@@ -44,7 +44,7 @@ class DB
   #   "ZIP".ljust(10) + "CITY".ljust(15) + "STATE".ljust(8) + "STREET".ljust(20) +
   #   "PHONE".ljust(20)
   #   print "\n"
-  #     @records.each do |key|
+  #     @SOMEUNIVERSIALLYAVAILABLETHING.each do |key|
   #     print "#{key.last_name.ljust(10)} #{key.first_name.ljust(15)}" +
   #     "#{key.email_address.ljust(30)} #{key.zipcode.ljust(10)}" +
   #     "#{key.city.ljust(15)}" + "#{key.state.ljust(8)}" + "#{key.street.ljust(20)}" +
