@@ -54,8 +54,41 @@ class Legends
          "\n'queue save to <desired file name>'" +
          "\n'find <attribute> <criteria>'\n" +
          "\n  <attribute> can be - first name, last name, city, state, and zipcode\n" +
-         "\n  example search: find first name John\n" +
+         "\n  example search: find first name Horacio\n" +
          "\n                  find last name Watkins\n" +
          "\n                  find state DC"
+  end
+
+  def help_queue_print_by
+    puts "Type 'queue print <attribute>' Attributes include: "  +
+          "\nfirst name, last name, zipcode, city, and state."
+  end
+
+  def help_queue_save_to
+    puts "Type 'queue save to <filename.extension of your choice>' \n to save file\n"
+  end
+
+  def help_clear
+    puts "Type 'queue clear' to clear current queue.\n"
+  end
+
+  def help_print
+    puts "Type 'queue print' to print current queue.\n"
+  end
+
+  def help_count
+    puts "Type 'queue count' to find out how many attendees are in your current queue search\n"
+  end
+
+  def help_queue_commands
+    puts "Available commands for 'queue' are:\n'print'\n'count'\n'cleart'\n'save to'\n'print by'\n"
+  end
+
+  def help_queue_load
+    puts "\ntype: load yourfilename.csv\n"
+  end
+
+  def help_queue_find
+    puts "\njust type 'help' for all find commands'\n"
   end
 end
