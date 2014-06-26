@@ -1,4 +1,4 @@
-require_relative 'db' && 'leyends' && 'helper'
+require_relative 'db' && 'leyends' && 'helper' && 'printer'
 
 class CLI
   def self.run
@@ -6,12 +6,11 @@ class CLI
     new(database).start
   end
 
-  attr_reader :queue,
-              :command,
-              :parameters,
-              :database,
-              :sort
-
+  attr_reader   :queue,
+                :command,
+                :parameters,
+                :database,
+                :sort
   attr_accessor :db
 
   def initialize(database)
@@ -23,6 +22,7 @@ class CLI
     @sort            = []
     @leyend          = Leyends.new
     @helper          = Helper.new
+    @printer         = Printer.new
   end
 
   def start
@@ -115,9 +115,9 @@ class CLI
     when parts[1] == "clear"
       @sort = []
     when parts[1] == "print"
-      print_attendees(@sort)
+      @printer.print_attendees(@sort)
     when parts[2] == "by"
-      print_attendees(@sort)
+      @printer.print_attendees(@sort)
     when parts[2] == "to"
       puts "QUEUE SAVE TO WORKING!"
     else
@@ -125,19 +125,5 @@ class CLI
     end
   end
 
-  def print_attendees(sorted_info)
-    print "-----------------------------------------------------------------------------------------------------------------------------------------------------------------\n"
-    print "LAST".ljust(20) + "FIRST".ljust(15) +
-    "ZIP".ljust(8) + "CITY".ljust(20) + "STATE".ljust(8) + "STREET".ljust(45) +
-    "PHONE".ljust(13) + "EMAIL".ljust(1)
-    print "\n"
-    print "-----------------------------------------------------------------------------------------------------------------------------------------------------------------\n"
-      sorted_info.each do |key|
-      print "#{key.last_name.ljust(20)} #{key.first_name.ljust(15)}" +
-      "#{key.zipcode.ljust(8)}" +
-      "#{key.city.ljust(20)}" + "#{key.state.ljust(8)}" + "#{key.street.ljust(45)}" +
-      "#{key.homephone.ljust(13)}" + "#{key.email_address.ljust(1)}"
-      print "\n"
-    end
-  end
+
 end
