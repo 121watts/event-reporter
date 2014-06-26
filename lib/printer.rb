@@ -1,17 +1,32 @@
 class Printer
   def print_attendees(sorted_info)
-    print "-----------------------------------------------------------------------------------------------------------------------------------------------------------------\n"
-    print "LAST".ljust(20) + "FIRST".ljust(15) +
-    "ZIP".ljust(8) + "CITY".ljust(20) + "STATE".ljust(8) + "STREET".ljust(45) +
-    "PHONE".ljust(13) + "EMAIL".ljust(1)
+    long_line
+    print "LAST NAME".ljust(20)  +
+          "FIRST NAME".ljust(20) +
+          "PHONE".ljust(13)      +
+          "ZIPCODE".ljust(8)     +
+          "CITY".ljust(20)       +
+          "STATE".ljust(8)       +
+          "ADDRESS".ljust(45)    +
+          "EMAIL".ljust(20)
     print "\n"
-    print "-----------------------------------------------------------------------------------------------------------------------------------------------------------------\n"
-      sorted_info.each do |key|
-      print "#{key.last_name.ljust(20)} #{key.first_name.ljust(15)}" +
-      "#{key.zipcode.ljust(8)}" +
-      "#{key.city.ljust(20)}" + "#{key.state.ljust(8)}" + "#{key.street.ljust(45)}" +
-      "#{key.homephone.ljust(13)}" + "#{key.email_address.ljust(1)}"
-      print "\n"
+    long_line
+    sorted_info.each do |key|
+    print "#{key.last_name.slice(0..16).ljust(20)}"     +
+          "#{key.first_name.slice(0..16).ljust(20)}"    +
+          "#{key.homephone.slice(0..9).ljust(13)}"      +
+          "#{key.zipcode.ljust(8)}"                     +
+          "#{key.city.slice(0..16).ljust(20)}"          +
+          "#{key.state.ljust(8)}"                       +
+          "#{key.street.slice(0..40).ljust(45)}"        +
+          "#{key.email_address.slice(0..16).ljust(20)}"
+    print "\n"
     end
+  end
+
+  def long_line
+    print "--------------------------------------------------" +
+    "---------------------------------------------------------" +
+    "------------------------------------------------------\n"
   end
 end
