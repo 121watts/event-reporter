@@ -1,11 +1,11 @@
 class Legends
 
-  def wellcome
-    puts "Wellcome to Event Reproter!!"
+  def welcome
+    puts "Wellcome to Event Reproter!!".red
   end
 
   def print_command
-    print "Print your command here: "
+    print "Type your command here: "
   end
 
   def close_program

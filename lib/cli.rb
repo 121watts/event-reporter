@@ -1,4 +1,4 @@
-require_relative 'db' && 'legends' && 'helper' && 'printer'
+require_relative 'db' && 'legends' && 'helper' && 'printer' && 'colors'
 
 class CLI
   def self.run
@@ -28,7 +28,7 @@ class CLI
   end
 
   def start
-    @legend.wellcome
+    @legend.welcome
     until command == "quit"
       @legend.print_command
       parts = process_input(gets.strip)
