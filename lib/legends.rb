@@ -57,3 +57,5 @@ class Legends
          "\n  example search: find first name John\n" +
          "\n                  find last name Watkins\n" +
          "\n                  find state DC"
+  end
+end
