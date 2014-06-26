@@ -1,7 +1,7 @@
 class Legends
 
   def welcome
-    puts "Wellcome to Event Reproter!!".red
+    puts "Welcome to Event Reproter!!".red
   end
 
   def print_command
@@ -45,7 +45,7 @@ class Legends
   end
 
   def available_commands
-    puts "Wellcome tho Event Reporter.\n"
+    puts "Welcome tho Event Reporter.\n"
   end
 
 
