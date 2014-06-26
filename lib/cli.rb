@@ -20,19 +20,19 @@ class CLI
     @database        = database
     @db              = DB.read("./data/event_attendees.csv")
     @sort            = []
-    @leyend          = legends.new
+    @legend          = Legends.new
     @helper          = Helper.new
     @printer         = Printer.new
   end
 
   def start
-    @leyend.wellcome
+    @legend.wellcome
     until command == "quit"
       @leyend.print_command
       parts = process_input(gets.strip)
       execute_command(parts)
     end
-    @leyend.close_program
+    @legend.close_program
   end
 
   def process_input(input)
@@ -135,6 +135,5 @@ class CLI
       puts "That's not a valid option for queue."
     end
   end
-
 
 end

@@ -1,4 +1,6 @@
 require_relative 'test_helper'
+require_relative '../lib/db'
+require_relative '../lib/cleaner'
 
 class DBTest<Minitest::Test
 
