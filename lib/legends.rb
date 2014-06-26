@@ -58,8 +58,34 @@ class Legends
          "\n                  find last name Watkins\n" +
          "\n                  find state DC"
 
+<<<<<<< HEAD
+=======
+  def queue_print_by
+    puts ""
   end
 
+  def queue_save_to
+    puts ""
+  end
 
+  def queue_clear
+    puts ""
+>>>>>>> 1655800683f5c013e0a306b245ad5772f4ea05fc
+  end
 
+  def queue_print
+    puts ""
+  end
+
+  def queue_command
+    puts ""
+  end
+
+  def load_command
+    puts ""
+  end
+
+  def find_command
+    puts ""
+  end
 end
