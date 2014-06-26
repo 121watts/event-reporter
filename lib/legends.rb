@@ -48,7 +48,31 @@ class Legends
     puts "Wellcome tho Event Reporter.\n"
   end
 
+  def queue_print_by
+    puts ""
+  end
 
+  def queue_save_to
+    puts ""
+  end
 
+  def queue_clear
+    puts ""
+  end
 
+  def queue_print
+    puts ""
+  end
+
+  def queue_command
+    puts ""
+  end
+
+  def load_command
+    puts ""
+  end
+
+  def find_command
+    puts ""
+  end
 end
