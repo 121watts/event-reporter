@@ -138,15 +138,15 @@ class CLI
 
 
   def save_file(sort, filename)
-  Dir.mkdir("output") unless Dir.exists?("output")
+    Dir.mkdir("output") unless Dir.exists?("output")
 
-  filename = "output/#{filename}"
-
-  File.open(filename,'w') do |file|
+    filename = "output/#{filename}"
+    
+    File.open(filename,'w') do |file|
     file << sort.select {|x| x.last_name }
+    end
+    @legend.queue_saved
   end
-  @legend.queue_saved
-end
 
 
 end
