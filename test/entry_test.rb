@@ -1,4 +1,6 @@
 require_relative 'test_helper'
+require_relative '../lib/entry'
+require_relative '../lib/cleaner'
 
 class EntryTest < Minitest::Test
   def test_entry_attributes

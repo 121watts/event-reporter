@@ -1,8 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/cli'
-require_relative '../lib/db'
-require_relative '../lib/event_reporter'
+require_relative 'test_helper'
 
 class CLITest < Minitest::Test
   attr_reader :cli

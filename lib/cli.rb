@@ -28,7 +28,11 @@ class CLI
   end
 
   def start
+<<<<<<< HEAD
     @legend.welcome
+=======
+    @legend.wellcome
+>>>>>>> 2e8fdcec9e01a05eb28a40dea0a38dff22b29061
     until command == "quit"
       @legend.print_command
       parts = process_input(gets.strip)
@@ -126,6 +130,7 @@ class CLI
     end
   end
 
+<<<<<<< HEAD
   def queue_second_position_of_the_array(parts)
     case parts[1]
     when "clear" then @sort = []
@@ -134,4 +139,6 @@ class CLI
     else @legend.queue_wrong_command
     end
   end
+=======
+>>>>>>> 2e8fdcec9e01a05eb28a40dea0a38dff22b29061
 end
