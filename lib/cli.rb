@@ -11,6 +11,7 @@ class CLI
                 :parameters,
                 :database,
                 :sort
+                :parts
   attr_accessor :db
 
   def initialize(database)
@@ -20,19 +21,20 @@ class CLI
     @database        = database
     @db              = DB.read("./data/event_attendees.csv")
     @sort            = []
-    @leyend          = legends.new
+    @legend          = Legends.new
     @helper          = Helper.new
     @printer         = Printer.new
+    @parts           = []
   end
 
   def start
-    @leyend.wellcome
+    @legend.wellcome
     until command == "quit"
-      @leyend.print_command
+      @legend.print_command
       parts = process_input(gets.strip)
       execute_command(parts)
     end
-    @leyend.close_program
+    @legend.close_program
   end
 
   def process_input(input)
@@ -50,13 +52,13 @@ class CLI
     when "find"   then find(parts)
     when "queue"  then queue(parts)
     when "quit"   then @command  = parts[0]
-    else puts "I don't know the '#{parts[0..-1].join(" ")}' command. \nTo know the available functions in Event Reporter, please type help."
+    else @legend.missing_command
     end
   end
 
   def loading_file(parts)
     case
-    when parts[1] == nil then @leyend.load_incomplete
+    when parts[1] == nil then @legend.load_incomplete
     when parts[1] != nil then
       loading_exeption(parts)
     end
@@ -68,7 +70,7 @@ class CLI
       DB.read("./data/#{parameters}")
       puts "LOADING: #{parameters}"
     rescue
-      puts "there is not such file."
+      @legend.load_no_file
     end
   end
 
@@ -109,32 +111,27 @@ class CLI
 
   def queue(parts)
     case
-    when parts[2] != nil then queue_two(parts)
-    when parts[1] != nil then queue_one(parts)
+    when parts[2] != nil then queue_third_position_of_the_array(parts)
+    when parts[1] != nil then queue_second_position_of_the_array(parts)
+    when parts[1] == nil then puts @legend.queue_needs_commands
+    else @legend.queue_wrong_command
     end
   end
 
-  def queue_two(parts)
+  def queue_third_position_of_the_array(parts)
     case parts[2]
-
-
-
-    case
-    when parts[1]  == "count"
-      puts "There are #{@sort.count} entiries in the queue"
-      puts "\n"
-    when parts[1] == "clear"
-      @sort = []
-    when parts[1] == "print"
-      @printer.print_attendees(@sort)
-    when parts[2] == "by"
-      @printer.print_attendees(@sort)
-    when parts[2] == "to"
-      puts "QUEUE SAVE TO WORKING!"
-    else
-      puts "That's not a valid option for queue."
+    when "by" then @printer.print_attendees(@sort)
+    when "to" then @legend.queue_saved
+    else @legend.queue_wrong_command
     end
   end
 
-
+  def queue_second_position_of_the_array(parts)
+    case parts[1]
+    when "clear" then @sort = []
+    when "print" then @printer.print_attendees(@sort)
+    when "count" then @legend.count_result(@sort)
+    else @legend.queue_wrong_command
+    end
+  end
 end

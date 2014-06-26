@@ -1,4 +1,4 @@
-require_relative 'leyends'
+require_relative 'legends'
 
 class Load
   def loading(parts)
