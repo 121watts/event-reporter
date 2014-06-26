@@ -9,7 +9,7 @@ class Cleaner
   end
 
   def clean_phone(homephone)
-    homephone.to_s.scan(/\d/).join
+    homephone.to_s.scan(/\d/).join.rjust(10, "0")[0..9]
   end
 
   def clean_city(city)

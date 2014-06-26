@@ -9,7 +9,7 @@ class Legends
   end
 
   def close_program
-    puts "\nGoodbye, we hope Event Reporter was helpful for you."
+    puts "\nGoodbye, we hope Event Reporter was AMAZEBALLS."
   end
 
   def need_file

@@ -19,7 +19,7 @@ class Printer
           "#{key.city.slice(0..16).ljust(20)}"          +
           "#{key.state.ljust(8)}"                       +
           "#{key.street.slice(0..40).ljust(45)}"        +
-          "#{key.email_address.slice(0..16).ljust(20)}"
+          "#{key.email_address.slice(0..30).ljust(20)}"
     print "\n"
     end
   end
