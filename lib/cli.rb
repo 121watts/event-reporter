@@ -1,4 +1,4 @@
-require_relative 'db' && 'leyends'
+require_relative 'db' && 'leyends' && 'helper'
 
 class CLI
   def self.run
@@ -9,7 +9,6 @@ class CLI
   attr_reader :queue,
               :command,
               :parameters,
-#              :criteria,
               :database,
               :sort
 
@@ -19,11 +18,11 @@ class CLI
     @queue           = []
     @command         = ""
     @parameters      = ""
-    #@criteria        = ""
     @database        = database
     @db              = DB.read("./data/event_attendees.csv")
     @sort            = []
     @leyend          = Leyends.new
+    @helper          = Helper.new
   end
 
   def start
@@ -47,7 +46,7 @@ class CLI
   def execute_command(parts)
     case parts[0]
     when "load"   then loading_file(parts)
-    when "help"   then help(parts)
+    when "help"   then @helper.help(parts)
     when "find"   then find(parts)
     when "queue"  then queue(parts)
     when "quit"   then @command  = parts[0]
@@ -73,49 +72,39 @@ class CLI
     end
   end
 
-
   def find(parts)
     case parts[1]
-    when "first"
-      @parameters =  parts[3..-1].join(" ")
-      @sort       = db.find_by_first_name(@parameters.capitalize)
-    when "last"
-      @parameters = parts[3..-1].join(" ")
-      @sort       = db.find_by_last_name(@parameters.capitalize)
-    when "city"
-      @parameters = parts[2..-1].join(" ")
-      @sort       = db.find_by_city(@parameters)
-    when "state"
-      @parameters = parts[2..-1].join(" ")
-      @sort       = db.find_by_state(@parameters.upcase)
-    when "zipcode"
-      @parameters = parts[2..-1].join(" ")
-      @sort       = zip_sort = db.find_by_zipcode(@parameters)
+    when "first"   then find_first(parts)
+    when "last"    then find_last(parts)
+    when "city"    then find_city(parts)
+    when "state"   then find_state(parts)
+    when "zipcode" then find_zipcode(parts)
     end
   end
 
-  def help(parts)
-    @command    = parts[0..-1]
-    case
-    when parts[3] == "by"
-      puts "The instructions of 'queue printing by'"
-    when parts[3] == "to"
-      puts "'queue save to' instructions"
-    when parts[2] == "clear"
-      puts "'Queue clear' instructions..."
-    when parts[2] == "print"
-      puts "'Queue print' instructions"
-    when parts[1] == nil
-      puts "The available commands are..."
-    when parts[1] == "queue"
-      puts "'Queue' instructions"
-    when parts[1] == "load"
-      puts "'Load' Instructions..."
-    when parts[1] == "find"
-      puts "'find' instructions..."
-    else
-      puts "Sorry, but '#{parts[1..-1].join(" ").upcase}' is not a valid command for Help Section."
-    end
+  def find_first(parts)
+    @parameters =  parts[3..-1].join(" ")
+    @sort       = db.find_by_first_name(@parameters.capitalize)
+  end
+
+  def find_last(parts)
+    @parameters = parts[3..-1].join(" ")
+    @sort       = db.find_by_last_name(@parameters.capitalize)
+  end
+
+  def find_city(parts)
+    @parameters = parts[2..-1].join(" ")
+    @sort       = db.find_by_city(@parameters)
+  end
+
+  def find_state(parts)
+    @parameters = parts[2..-1].join(" ")
+    @sort       = db.find_by_state(@parameters.upcase)
+  end
+
+  def find_zipcode(parts)
+    @parameters = parts[2..-1].join(" ")
+    @sort       = zip_sort = db.find_by_zipcode(@parameters)
   end
 
   def queue(parts)
