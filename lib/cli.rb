@@ -27,7 +27,7 @@ class CLI
   end
 
   def start
-    puts "Welcome to Event Reporer!"
+    puts "Welcome to Event Reporter!"
     until command == "quit"
       print "Enter your command: "
       parts = process_input(gets.strip)
@@ -68,16 +68,16 @@ class CLI
     case parts[1]
     when "first"
       @parameters =  parts[3..-1].join(" ")
-      @sort       = db.find_by_first_name(@parameters)
+      @sort       = db.find_by_first_name(@parameters.capitalize)
     when "last"
       @parameters = parts[3..-1].join(" ")
-      @sort       = db.find_by_last_name(@parameters)
+      @sort       = db.find_by_last_name(@parameters.capitalize)
     when "city"
       @parameters = parts[2..-1].join(" ")
       @sort       = db.find_by_city(@parameters)
     when "state"
       @parameters = parts[2..-1].join(" ")
-      @sort       = db.find_by_state(@parameters)
+      @sort       = db.find_by_state(@parameters.upcase)
     when "zipcode"
       @parameters = parts[2..-1].join(" ")
       @sort       = zip_sort = db.find_by_zipcode(@parameters)
