@@ -141,7 +141,7 @@ class CLI
     Dir.mkdir("output") unless Dir.exists?("output")
 
     filename = "output/#{filename}"
-    
+
     File.open(filename,'w') do |file|
     file << sort.select {|x| x.last_name }
     end
