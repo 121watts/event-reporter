@@ -122,7 +122,7 @@ class CLI
   def queue_third_position_of_the_array(parts)
     case parts[2]
     when "by" then @printer.print_attendees(@sort)
-    when "to" then @legend.queue_saved
+    when "to" then save_file(@sort, parts[3])
     else @legend.queue_wrong_command
     end
   end
@@ -135,5 +135,18 @@ class CLI
     else @legend.queue_wrong_command
     end
   end
+
+
+  def save_file(sort, filename)
+  Dir.mkdir("output") unless Dir.exists?("output")
+
+  filename = "output/#{filename}"
+
+  File.open(filename,'w') do |file|
+    file << sort.select {|x| x.last_name }
+  end
+  @legend.queue_saved
+end
+
 
 end

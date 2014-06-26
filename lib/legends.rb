@@ -5,7 +5,7 @@ class Legends
   end
 
   def print_command
-    print "\nType your command here: "
+    print "\nType your command here: ".red
   end
 
   def close_program
