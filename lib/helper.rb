@@ -8,40 +8,36 @@ class Helper
 
   def help(parts)
     case
-    when parts[3] != nil then help_three(parts)
-    when parts[2] != nil then help_two(parts)
-    when parts[1] != nil then help_one(parts)
+    when parts[3] != nil then help_fourth_position_of_the_array(parts)
+    when parts[2] != nil then help_third_position_of_the_array(parts)
+    when parts[1] != nil then help_second_position_of_the_array(parts)
     when parts[1] == nil then @legend.available_commands
     else @legend.missing_command
     end
   end
 
-  def help_three(parts)
+  def help_fourth_position_of_the_array(parts)
     case parts[3]
-    when "by" then puts "Type 'queue print <attribute>' Attributes include: "
-                        +"\nfirst name, last name, zipcode, city, and state."
-    when "to" then puts "Type 'queue save to <filename.extension of your choice>'" +
-                        "\n to save file\n"
+    when "by" then @legend.help_queue_print_by
+    when "to" then @legend.help_queue_save_to
     else @legend.missing_command
     end
   end
 
-  def help_two(parts)
+  def help_third_position_of_the_array(parts)
     case parts[2]
-    when "clear" then puts "Type 'queue clear' to clear current queue.\n"
-    when "print" then puts "Type 'queue print' to print current queue.\n"
-    when "count" then puts "Type 'queue count' to find out how many attendees are in your current queue search\n"
+    when "clear" then @legend.help_clear
+    when "print" then @legend.help_print
+    when "count" then @legend.help_count
     else @legend.missing_command
     end
   end
 
-  def help_one(parts)
+  def help_second_position_of_the_array(parts)
     case parts[1]
-    when "queue" then puts "Available commands for 'queue' are:" +
-                           "\n'print'\n'count'\n'cleart'\n'save to'" +
-                           "\n'print by'\n"
-    when "load" then puts "\ntype: load yourfilename.csv\n"
-    when "find" then puts "\njust type 'help' for all find commands'\n"
+    when "queue" then @legend.help_queue_commands
+    when "load"  then @legend.help_queue_load
+    when "find"  then @legend.help.queue_find
     else @legend.missing_command
     end
   end
