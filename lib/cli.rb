@@ -1,4 +1,4 @@
-require_relative 'db' && 'leyends' && 'helper' && 'printer'
+require_relative 'db' && 'legends' && 'helper' && 'printer'
 
 class CLI
   def self.run
@@ -20,7 +20,7 @@ class CLI
     @database        = database
     @db              = DB.read("./data/event_attendees.csv")
     @sort            = []
-    @leyend          = Leyends.new
+    @leyend          = legends.new
     @helper          = Helper.new
     @printer         = Printer.new
   end
@@ -108,6 +108,16 @@ class CLI
   end
 
   def queue(parts)
+    case
+    when parts[2] != nil then queue_two(parts)
+    when parts[1] != nil then queue_one(parts)
+    end
+  end
+
+  def queue_two(parts)
+
+
+
     case
     when parts[1]  == "count"
       puts "There are #{@sort.count} entiries in the queue"

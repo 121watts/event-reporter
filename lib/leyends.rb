@@ -1,4 +1,4 @@
-class Leyends
+class Legends
 
   def wellcome
     puts "Wellcome to Event Reproter!!"
