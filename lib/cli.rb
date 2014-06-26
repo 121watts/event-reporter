@@ -1,5 +1,4 @@
-require_relative 'db'
-
+require_relative 'db' && 'leyends'
 
 class CLI
   def self.run
@@ -10,7 +9,7 @@ class CLI
   attr_reader :queue,
               :command,
               :parameters,
-              :criteria,
+#              :criteria,
               :database,
               :sort
 
@@ -20,20 +19,21 @@ class CLI
     @queue           = []
     @command         = ""
     @parameters      = ""
-    @criteria        = ""
+    #@criteria        = ""
     @database        = database
     @db              = DB.read("./data/event_attendees.csv")
     @sort            = []
+    @leyend          = Leyends.new
   end
 
   def start
-    puts "Welcome to Event Reporter!"
+    @leyend.wellcome
     until command == "quit"
-      print "Enter your command: "
+      @leyend.print_command
       parts = process_input(gets.strip)
       execute_command(parts)
     end
-    puts "Good Bye!"
+    @leyend.close_program
   end
 
   def process_input(input)
@@ -46,23 +46,33 @@ class CLI
 
   def execute_command(parts)
     case parts[0]
-    when "load"
-      @command    = parts[0]
-      @parameters = parts[1..-1].pop
-      puts "LOADING: #{parameters}"
-      DB.read("./data/#{parameters}")
-    when "help"
-      help(parts)
-    when "find"
-      find(parts)
-    when "queue"
-      queue(parts)
-    when "quit"
-      @command  = parts[0]
-    else
-      puts "I don't know the '#{parts[0..-1].join(" ")}' command. \nTo know the available functions in Event Reporter, please type help."
+    when "load"   then loading_file(parts)
+    when "help"   then help(parts)
+    when "find"   then find(parts)
+    when "queue"  then queue(parts)
+    when "quit"   then @command  = parts[0]
+    else puts "I don't know the '#{parts[0..-1].join(" ")}' command. \nTo know the available functions in Event Reporter, please type help."
     end
   end
+
+  def loading_file(parts)
+    case
+    when parts[1] == nil then @leyend.load_incomplete
+    when parts[1] != nil then
+      loading_exeption(parts)
+    end
+  end
+
+  def loading_exeption(parts)
+    begin
+      @parameters = parts[1..-1].pop
+      DB.read("./data/#{parameters}")
+      puts "LOADING: #{parameters}"
+    rescue
+      puts "there is not such file."
+    end
+  end
+
 
   def find(parts)
     case parts[1]
@@ -127,17 +137,18 @@ class CLI
   end
 
   def print_attendees(sorted_info)
-    print "LAST".ljust(11) + "FIRST".ljust(15) +
-    "ZIP".ljust(10) + "CITY".ljust(15) + "STATE".ljust(8) + "STREET".ljust(40) +
+    print "-----------------------------------------------------------------------------------------------------------------------------------------------------------------\n"
+    print "LAST".ljust(20) + "FIRST".ljust(15) +
+    "ZIP".ljust(8) + "CITY".ljust(20) + "STATE".ljust(8) + "STREET".ljust(45) +
     "PHONE".ljust(13) + "EMAIL".ljust(1)
     print "\n"
+    print "-----------------------------------------------------------------------------------------------------------------------------------------------------------------\n"
       sorted_info.each do |key|
-      print "#{key.last_name.ljust(10)} #{key.first_name.ljust(15)}" +
-      "#{key.zipcode.ljust(10)}" +
-      "#{key.city.ljust(15)}" + "#{key.state.ljust(8)}" + "#{key.street.ljust(40)}" +
+      print "#{key.last_name.ljust(20)} #{key.first_name.ljust(15)}" +
+      "#{key.zipcode.ljust(8)}" +
+      "#{key.city.ljust(20)}" + "#{key.state.ljust(8)}" + "#{key.street.ljust(45)}" +
       "#{key.homephone.ljust(13)}" + "#{key.email_address.ljust(1)}"
       print "\n"
     end
   end
-
 end
